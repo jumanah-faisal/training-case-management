@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نظام حماية | الصفحة الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    :root {
+      --primary: #2A445E;
+      --accent: #9C27B0;
+      --secondary: #7B1FA2;
+      --light: #F8F9FC;
+      --dark: #2A0948;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      padding: 120px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--light);
+      transform: skewY(-3deg);
+      z-index: 1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      z-index: 3;
+    }
+
+    .logo svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #E1BEE7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background: rgba(255,255,255,0.95);
+      padding: 15px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      transition: all 0.3s;
+      padding: 8px 15px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      background: rgba(74, 20, 140, 0.05);
+    }
+
+    .intro {
+      position: relative;
+      background: var(--light);
+      padding: 60px 20px;
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background: var(--light);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .intro h2 {
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .intro p {
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+
+    .card {
+      background: var(--light);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(74, 20, 140, 0.1);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 45%, rgba(156, 39, 176, 0.1) 50%, transparent 55%);
+      transform: rotate(45deg);
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    .card:hover::before {
+      animation: shine 1.5s;
+    }
+
+    @keyframes shine {
+      0% { left: -50%; }
+      100% { left: 150%; }
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .card h3 {
+      color: var(--dark);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #666;
+      margin-bottom: 20px;
+      min-height: 70px;
+      font-size: 0.95rem;
+    }
+
+    .card a {
+      background: linear-gradient(45deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      font-size: 0.9rem;
+    }
+
+    .card a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .card a:hover {
+      box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
+    }
+
+    .card a:hover::before {
+      left: 100%;
+    }
+
+    .floating-icon {
+      position: fixed;
+      width: 80px;
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .icon1 {
+      right: 5%;
+      top: 20%;
+      animation-delay: 0s;
+    }
+
+    .icon2 {
+      right: 15%;
+      top: 50%;
+      animation-delay: 2s;
+    }
+
+    .icon3 {
+      right: 8%;
+      top: 70%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+      50% {
+        transform: translateY(10px) rotate(-5deg);
+      }
+      75% {
+        transform: translateY(-10px) rotate(3deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 80px 20px 60px; }
+      nav { flex-wrap: wrap; gap: 15px; }
+      .card { margin-bottom: 20px; }
+      header h1 { font-size: 2rem; }
+      .intro h2 { font-size: 1.6rem; }
+      .floating-icon {
+        width: 60px;
+        opacity: 0.1;
+      }
+    }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.9);
+      padding: 50px 20px;
+      clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer p {
+      margin: 0;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 5a3 3 0 116 0v3H9V6zm9 5v9H6v-9h12z"/></svg>
+      نظام الحماية
+    </div>
+    <div class="header-content">
+      <h1>نظام حماية إلكتروني</h1>
+      <p>منصة متقدمة لإدارة القضايا والمعلومات بدقة وسرعة وأمان</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">ادراج معلومات</a>
+    <a href="./page1.html">ادراج قضية</a>
+    <a href="#">تعديل قضية</a>
+    <a href="#">تعديل شخص</a>
+    <a href="#">الاستعلام</a>
+    <a href="#">طباعة بطاقة تزكية</a>
+    <a href="#">بطاقة معلومات</a>
+    <a href="#">المزيدد</a>
+  </nav>
+
+  <section class="intro">
+    <h2>مرحبًا بك في نظام الحماية</h2>
+    <p>هذا النظام مصمم لتسهيل إدارة البيانات وحمايتها من خلال واجهة سهلة وآمنة.</p>
+  </section>
+
+  <section class="sections">
+    <div class="card">
+        <div class="card-icon">⚖️</div>
+      <h3> ادراج قضية</h3>
+      <p>تحكم شامل في بيانات القضايا مع إمكانية التتبع والإشعارات.</p>
+      <a href="./page1.html">عرض التفاصيل</a>
+    </div>
+    <div class="card">
+        <div class="card-icon">🛡️</div>
+      <h3>خدمة اخرى</h3>
+      <p>إضافة، تعديل، أو حذف مستخدمين بسهولة وأمان.</p>
+      <a href="#">عرض التفاصيل</a>
+    </div>
+    <div class="card">
+        <div class="card-icon">📝</div>
+      <h3>خدمة اخرى</h3>
+      <p>تخصيص إعدادات النظام بما يتوافق مع احتياجاتك.</p>
+      <a href="#">عرض التفاصيل</a>
+    </div>
+  </section>
+
+  <div class="floating-elements">
+    <img src="https://www.svgrepo.com/show/530443/shield.svg" alt="shield" class="floating-icon icon1">
+    <img src="https://www.svgrepo.com/show/530035/balance.svg" alt="balance" class="floating-icon icon2">
+    <img src="https://www.svgrepo.com/show/530022/law.svg" alt="law" class="floating-icon icon3">
+  </div>
+
+  <footer>
+    <p>© 2025 نظام الحماية. جميع الحقوق محفوظة.</p>
+  </footer>
+</body>
+</html>

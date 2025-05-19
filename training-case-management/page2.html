@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تفاصيل القضية | نظام الحماية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    :root {
+      --primary: #4A148C;
+      --accent: #9C27B0;
+      --secondary: #7B1FA2;
+      --light: #F8F9FC;
+      --dark: #2A0948;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: white;
+      padding: 120px 20px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 30px 30px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: var(--light);
+      transform: skewY(-2deg);
+      z-index: 1;
+      border-radius: 30px 30px 0 0;
+    }
+
+    .logo {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+      z-index: 3;
+      background: rgba(255,255,255,0.15);
+      padding: 8px 15px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .logo svg {
+      width: 26px;
+      height: 26px;
+      fill: white;
+    }
+
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(45deg, #fff 65%, #E1BEE7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-content h1::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .header-content p {
+      font-size: 1.1rem;
+      color: #E1BEE7;
+      max-width: 600px;
+      margin: 15px auto 0;
+      line-height: 1.8;
+    }
+
+    nav {
+      background: rgba(255,255,255,0.98);
+      padding: 15px 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,0,0,0.08);
+      margin: 20px auto;
+      border-radius: 12px;
+      top: 20px;
+      max-width: 95%;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      transition: all 0.3s;
+      padding: 8px 2px;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .section {
+      background: var(--light);
+      margin: 60px auto;
+      padding: 30px;
+      width: 90%;
+      max-width: 900px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      border: 1px solid rgba(74, 20, 140, 0.1);
+    }
+
+    .section h2 {
+      text-align: center;
+      color: var(--dark);
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      background-color: white;
+      font-family: 'Tajawal', sans-serif;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
+      outline: none;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .submit-btn {
+      grid-column: span 2;
+      justify-self: center;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      color: white;
+      padding: 12px 35px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      width: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover {
+      box-shadow: 0 4px 15px rgba(74, 20, 140, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .submit-btn::after {
+      content: '←';
+      font-family: sans-serif;
+      margin-right: 8px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover::after {
+      opacity: 1;
+      margin-right: 15px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.9);
+      padding: 60px 20px 30px;
+      clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 100px;
+    }
+
+    footer p {
+      margin: 0;
+      color: #ccc;
+      line-height: 2;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 100px 20px 80px; }
+      nav { gap: 20px; padding: 12px; }
+      .header-content h1 { font-size: 2rem; }
+      .section h2 { font-size: 1.5rem; }
+      form { grid-template-columns: 1fr; }
+      .submit-btn {
+        grid-column: span 1;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 5a3 3 0 116 0v3H9V6zm9 5v9H6v-9h12z"/></svg>
+      نظام الحماية
+    </div>
+    <div class="header-content">
+      <h1>تفاصيل القضية</h1>
+      <p>إدارة تفاصيل القضية بدقة وسهولة عبر نموذج مخصص</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="./main3.html">الرئيسية</a>
+    <a href="#">تفاصيل المعاملة</a>
+    <a href="#">أطراف القضية</a>
+    <a href="#">تفاصيل الأطراف</a>
+  </nav>
+
+  <section class="section">
+    <h2>تفاصيل القضية</h2>
+    <form>
+      <div>
+        <label>رقم القضية</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>تاريخ القضية</label>
+        <input type="date">
+      </div>
+      <div>
+        <label>الاسم</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>نوع القضية</label>
+        <select>
+          <option>اختر نوع القضية</option>
+          <option>مالية</option>
+          <option>جنائية</option>
+        </select>
+      </div>
+      <div>
+        <label>جهة الورود</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>جهة الإحالة</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>رقم المعاملة</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>تاريخ المعاملة</label>
+        <input type="date">
+      </div>
+      <button type="submit" class="submit-btn">إضافة</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 نظام الحماية. جميع الحقوق محفوظة.</p>
+  </footer>
+
+</body>
+</html>
